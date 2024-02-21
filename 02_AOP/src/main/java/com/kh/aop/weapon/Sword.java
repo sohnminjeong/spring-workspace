@@ -3,8 +3,7 @@ package com.kh.aop.weapon;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
+@Data @NoArgsConstructor
 public class Sword extends Weapon {
 
 	@Override
