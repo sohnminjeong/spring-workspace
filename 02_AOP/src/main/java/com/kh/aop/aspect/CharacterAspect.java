@@ -2,74 +2,101 @@ package com.kh.aop.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
-/*
- * 1. Aspect (애스펙트)
- * - AOP 횡단 관심사(한 애플리케이션의 여러 부분에 공통적으로 사용하고 있는 기능)를
- *   애스펙트라는 특별한 클래스로 모듈화해서 관리한다.
- * - 애스펙트는 어드바이스와 포인트 커트를 합친 것이다.  
- * 
- * 2. Advice(어드바이스)
- * - 애스펙트가 해야하는 작업을 AOP 용어로 어드바이스라고 한다.
- * - 애스펙트가 해야하는 작업(공통적으로 사용하고 있는 기능)과 언제 그 작업을 
- *   수행해야 하는지 정의하는 것을 말한다.
- * - Spring Aspect는 5가지 종류의 어드바이스
- *   - before : 어드바이스 대상 메서드가 호출되기 전에 어드바이스 기능을 수행한다.
- *   - after : 결과와 상관없이 어드바이스 대상 메서드가 완료된 후에 어드바이스 기능을 수행한다. 
- *   - after-returning : 어드바이스 대상 메서드가 성공적으로 완료된 후에 어드바이스 기능을 수행한다.
- *   - after-throwing : 어드바이스 대상 메서드가 예외를 던진 후에 어드바이스 기능을 수행한다. 
- *   - around : 어드바이스 대상 메서드를 감싸서 어드바이스 대상 메서드 호출 전과 후에 어드바이스 기능을 수행한다.  
- * 
- * 3. PointCut(포인트 커트)
- *  - 어드바이스가 적용될 조인 포인트의 영역을 좁히는 일을 한다.
- *  - 어드바이스는 애스펙트가 해야 하는 '작업'과 '언제' 그 작업을 수행해야 하는지 정의하는 것이라면
- *    포인트 커트는 '어디에' 어드바이스를 적용할지 정의하는 것이다.
- *  - 포인트 커트를 지정하기 위해서는 "AspectJ" 포인트 커트 표현식을 통해서 지정해 줄 수 있다.  
- *  
- *  4. JoinPoint(조인 포인트)
- *  - 어드바이스를 적용할 수 있는 모든 지점을 조인 포인트라고 한다. 
- *  - 즉, 조인 포인트는 애플리케이션 실행에 어드바이스를 끼워 넣을 수 있는 지점(Point)를 말한다. 
- * */
-
+//일반적인 자바 클래스가 아니라 애스팩트임을 나타낸다.
 @Aspect
-public class CharacterAspect {
-
+public class CharacterAspect {	
+	// @Pointcut으로 필요할 때마다 참조할 수 있는 포인트커트를 정의한다.
+	// 설명 : 포인트 커트를 한 번만 정의하고 필요할 때마다 참조할 수 있는 @Pointcut 어노테이션을 제공한다.
 	@Pointcut("execution(* com.kh.aop.character.Character.quest(..)) && args(questName)")
 	public void questPointcut(String questName) {}
 	
 	@Before("execution(* com.kh.aop.character.Character.quest(..))")
 	public void beforeQuest(JoinPoint jp) {
-		// 퀘스트 수행 전 필요한 작업 진행
+		// 퀘스트를 수행하기 전에 필요한 부가 작업들 수행
 		String questName = (String) jp.getArgs()[0];
 		System.out.println(questName + " 퀘스트 준비 중..");
 	}
 	
+	@After("execution(* com.kh.aop.character.Character.quest(..))")
+	public void afterQuest() {
+		// 퀘스트 수행 결과에 상관없이 필요한 부가 작업을 수행
+		System.out.println("퀘스트 수행 완료..");
+	}
+	
+	@AfterReturning(
+		value = "questPointcut(questName)", 
+		returning = "result"
+	)
+	public void questSuccess(String questName, String result) {
+		// 퀘스트 수행 완료 후에 필요한 부가 작업을 수행한다.
+		System.out.println(result);		
+		System.out.println(questName + " 퀘스트 수행 완료..");
+	}
+	
+	@AfterThrowing(
+		value = "questPointcut(questName)",
+		throwing = "exception"
+	)
+	public void questFail(String questName, Exception exception) {
+		// 퀘스트 수행 중에 예외를 던졌을 때 필요한 부가 작업을 수행한다.
+		System.out.println(exception.getMessage());
+		System.out.println(questName + " 수행 중 에러가 발생하였습니다.");
+	}
+	
+	/*
 	@Around("execution(* com.kh.aop.character.Character.quest(..))")
 	public String questAdvice(ProceedingJoinPoint jp) {
 		String result = null;
-		String questName = (String) jp.getArgs()[0];
-		
-		// before~
-		System.out.println(questName + " 퀘스트 준비 중.. Around");
+		String questName = "<" + (String) jp.getArgs()[0] + ">";
 		
 		try {
-			result = (String) jp.proceed(new Object[] {questName});
+			// before 어드바이스에 대한 기능을 수행
+			System.out.println(questName + " 퀘스트 준비중..");
 			
-			// after-returning
-			System.out.println(questName + " 퀘스트 수행 완료..");
+			// 타겟 객체의 메소드를 실행시킨다.
+//			jp.proceed();
 			
+			// 타겟 객체의 메소드에 리턴값이 있을 경우 
+//			result = (String) jp.proceed();
+			
+			// 타겟 객체의 메소드에 파라미터 값을 변경해서 전달해줄 경우
+			result = (String) jp.proceed(new Object[] { questName });
+			
+			// after-returning 어드바이스에 대한 기능을 수행
+			System.out.println(questName + " 퀘스트 수행 완료..");	
 		} catch (Throwable e) {
-			// after-throwing
-			System.out.println(questName + " 수행 중 에러 발생");
+			// after-throwing 어드바이스에 대한 기능을 수행
+//			System.out.println(e.getMessage());
+			System.out.println(questName + " 수행 중 에러가 발생하였습니다.");
 		}
 		
 		return result;
 	}
-	
-	
-	
+	*/
+
+	@Around("execution(* com.kh.aop.weapon.Weapon.attack())")
+	public String attackAdvice(ProceedingJoinPoint jp) {
+		String result = null;
+		
+		try {
+			System.out.println("공격을 준비중 입니다.");
+			
+			result = (String) jp.proceed();
+			
+			System.out.println(result);
+			System.out.println("공격을 성공했습니다.");
+		} catch (Throwable e) {
+			System.out.println("에러가 발생하였습니다..");
+		}
+		
+		return result;
+	}
 }
