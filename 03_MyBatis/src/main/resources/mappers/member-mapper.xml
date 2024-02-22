@@ -3,4 +3,37 @@
 	<select id="showAllMember" resultType="Member">
 		SELECT * FROM member
 	</select>
+	
+	<!-- parameter값 예시 : #{id} -->
+	<!-- registerMember : insert, parameterType : Member -->
+	<insert id="registerMember" parameterType="Member">
+		INSERT INTO member VALUES(#{id}, #{password}, #{name})
+	</insert>
+	
+	<!-- login : select, parameterType : Member, resultType : Member -->
+	<select id="login" parameterType="Member" resultType="Member">
+		SELECT * FROM member WHERE id=#{id} AND password=#{password}
+	</select>
+	
+	<!-- updateMember : update, parameterType : Member -->
+	<update id="updateMember" parameterType="Member">
+		UPDATE member SET password=#{password}, name=#{name} WHERE id=#{id}
+	</update>
+	
+	<!-- findMember : select, parameterType : String, resultType : Member -->
+	<select id="findMember" parameterType="SearchDTO" resultType="Member">
+		SELECT * FROM member 
+		<where>
+			<if test="select == 'all'">
+				id LIKE CONCAT('%',#{keyword},'%') 
+				OR name LIKE CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="select == 'id'">
+				id LIKE CONCAT('%',#{keyword},'%') 
+			</if>
+			<if test="select == 'name'">
+				name LIKE CONCAT('%',#{keyword},'%')
+			</if>
+		</where>
+	</select>
 </mapper>
