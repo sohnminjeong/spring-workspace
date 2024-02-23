@@ -36,4 +36,8 @@ public class MemberDAO {
 	public List<Member> findMember(SearchDTO search) {
 		return session.selectList("memberMapper.findMember",search);
 	}
+	
+	public List<Member> findMember2(List<String> idList){
+		return session.selectList("memberMapper.findMember2", idList);
+	}
 }

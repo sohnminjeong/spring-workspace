@@ -17,5 +17,13 @@
 		<input type="text" name="keyword">
 		<input type="submit" value="조회">
 	</form>
+	
+	<h2>foreach 동적쿼리 테스트</h2>
+	<form action="find2">
+		<input type="checkbox" name="checkId" value="test1"> test1
+		<input type="checkbox" name="checkId" value="test2"> test2
+		<input type="checkbox" name="checkId" value="테스트"> 테스트
+		<input type="submit" value="조회">
+	</form>
 </body>
 </html>

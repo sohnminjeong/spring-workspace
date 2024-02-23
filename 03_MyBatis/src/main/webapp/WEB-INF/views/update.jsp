@@ -17,10 +17,12 @@
 	 	<input type = "submit" value="정보 수정">
 	</form>
 	
-
-	
-	
-	
+	<h2>비밀번호만 변경</h2>
+	<form action="updateMember" method="post">
+		<input type = "hidden" name="id" value="${login.id}"><br>
+	 	비밀번호 : <input type = "password" name="password" value="${login.password}"><br>
+	 	<input type = "submit" value="정보 수정">
+	</form>
 	
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.kh.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -112,6 +113,14 @@ public class MemberController {
 		model.addAttribute("list", list);
 		return "find_result";
 		// -> find_result.jsp로 이동(검색된 정보 보일 수 있도록 여러명 가능)
+	}
+	
+	@GetMapping("find2")
+	public String find2(String[] checkId, Model model) {
+		List<Member> list = service.findMember2(checkId);
+		model.addAttribute("list", list);
+		// model이 request같은 역할(Model은 여기서 제공하는것)
+		return "find_result";
 	}
 	
 }
