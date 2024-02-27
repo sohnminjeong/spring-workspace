@@ -8,9 +8,6 @@
 <!-- 2. reset.css 추가 -->
     <link rel="stylesheet" href="resources/css/reset.css" />
 	
-<!-- CSS 프레임워크 사용시 CDN 추가 -->
-
-	
     <!-- 3. 스타일 적용 : index.css 추가 -->
     <link rel="stylesheet" href="resources/css/index.css" />
 
@@ -29,7 +26,7 @@
       </div>
       <div class="tob-bar-right">
         <a href="#">로그인</a>
-        <a href="#">회원가입</a>
+        <a href="/register">회원가입</a>
         <a href="#">고객센터</a>
       </div>
     </div>
