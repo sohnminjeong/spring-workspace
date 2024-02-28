@@ -1,0 +1,15 @@
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="com.kh.paging.model.vo.Film" alias="Film"/>
+		<typeAlias type="com.kh.paging.model.vo.Paging" alias="Paging"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="mappers/film-mapper.xml"/>
+	</mappers>
+</configuration>
