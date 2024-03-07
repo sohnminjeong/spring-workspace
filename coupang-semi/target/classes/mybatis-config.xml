@@ -7,10 +7,12 @@
 	<!-- VO, DTO 등록 하는 곳! -->
 	<typeAliases>
 		<!-- <typeAlias type="com.semi.coupang.model.vo.Customer" alias="Customer"/> -->
+		<typeAlias type="com.semi.coupang.model.vo.Category" alias="Category"/>
 	</typeAliases>
 	
 	<!-- mapper 파일들 등록하는 곳! -->
 	<mappers>
 		<!-- <mapper resource="mappers/customer-mapper.xml"/> -->
+		<mapper resource="mappers/category-mapper.xml"/>
 	</mappers>
 </configuration>

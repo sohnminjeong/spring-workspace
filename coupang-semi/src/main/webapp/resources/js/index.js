@@ -48,3 +48,42 @@ window.addEventListener("scroll", function () {
     categoryMenu.style.display = "none";
   }
 });
+
+// ajax로 카테고리 호출!
+$.ajax({
+  type: "get",
+  url: "/category",
+
+  success: function (list) {
+    console.log(list);
+    let htmlCode = "";
+    for (const item of list) {
+      htmlCode += `
+      <div class="category-item">
+      <i class="fa-solid ${item.cateIcon}"></i>
+      <span>${item.cateName}</span>
+      <i class="fa-solid fa-caret-right"></i>
+      <div class="category-sub-item">
+      <ul>
+      `;
+      for (const sub of item.subList) {
+        htmlCode += `
+        <li><a href="#">${sub.subName}</a></li>
+        `;
+      }
+      htmlCode += `
+      </ul>
+                <img
+                  src="${item.cateURl}"
+                  alt=""
+                />
+              </div>
+            </div>
+      `;
+    }
+
+    $(".category-list").append(htmlCode);
+  },
+});
+
+
