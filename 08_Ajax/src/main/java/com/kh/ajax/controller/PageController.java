@@ -15,4 +15,14 @@ public class PageController {
 	public String ajax02() {
 		return "02_encoding";
 	}
+	
+	@GetMapping("/ajax03")
+	public String ajax03() {
+		return "03_register";
+	}
+	
+	@GetMapping("/ajax04")
+	public String ajax04() {
+		return "04_serialize";
+	}
 }
