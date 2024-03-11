@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +22,7 @@
     ></script>
 </head>
 <body>
+<sec:authentication var="user" property="principal" />
 	    <!-- 1. HTML 작성 -->
     <div class="tob-bar container">
       <div class="tob-bar-left">
@@ -26,9 +30,16 @@
         <a href="#">입점신청</a>
       </div>
       <div class="tob-bar-right">
-        <a href="#">로그인</a>
-        <a href="/register">회원가입</a>
-        <a href="#">고객센터</a>
+       <c:choose>
+				<c:when test="${user == 'anonymousUser'}">
+					<a href="/login">로그인</a>
+					<a href="/register">회원가입</a>
+				</c:when>
+				<c:otherwise>
+					<a href="/logout">로그아웃</a>
+				</c:otherwise>
+			</c:choose>
+			<a href="#">고객센터</a>
       </div>
     </div>
 

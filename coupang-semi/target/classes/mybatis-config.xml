@@ -8,11 +8,17 @@
 	<typeAliases>
 		<!-- <typeAlias type="com.semi.coupang.model.vo.Customer" alias="Customer"/> -->
 		<typeAlias type="com.semi.coupang.model.vo.Category" alias="Category"/>
+		<typeAlias type="com.semi.coupang.model.vo.Product" alias="Product"/>
+		<typeAlias type="com.semi.coupang.model.vo.Pick" alias="Pick"/>
+		<typeAlias type="com.semi.coupang.model.vo.User" alias="User"/>
 	</typeAliases>
 	
 	<!-- mapper 파일들 등록하는 곳! -->
 	<mappers>
 		<!-- <mapper resource="mappers/customer-mapper.xml"/> -->
 		<mapper resource="mappers/category-mapper.xml"/>
+		<mapper resource="mappers/product-mapper.xml"/>
+		<mapper resource="mappers/user-mapper.xml"/>
+		<mapper resource="mappers/pick-mapper.xml"/>
 	</mappers>
 </configuration>
