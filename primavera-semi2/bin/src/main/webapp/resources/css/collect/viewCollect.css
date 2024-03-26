@@ -1,0 +1,288 @@
+@font-face {
+	font-family: "Cafe24Oneprettynight";
+	src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff") format("woff");
+	font-style: normal;
+}
+<!-- 내용 --> 
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=swap');
+
+* {
+  box-sizing:border-box;
+}
+
+body {
+	 min-height: 100vh;
+	 display: flex;
+	 font-family: "Cafe24Oneprettynight";
+	 justify-content: center;
+	  align-items: center;
+	 background: #e4ecfa;
+}
+
+
+.tabs {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:680px;
+  height:360px;
+  padding:30px 20px;
+  background:#f5f5f5;
+  box-shadow:5px 5px 10px 5px #ccc;
+  overflow:hidden;
+}
+.tabs .tab-header {
+  float:left;
+  width:220px;
+  height:100%;
+  border-right:1px solid #ccc;
+  padding:50px 0px;
+  font-family: "Cafe24Oneprettynight";
+}
+.tabs .tab-header > div {
+  height:55px;
+  line-height:55px;
+  font-size:15px;
+  font-weight:600;
+  color:#888;
+  cursor:pointer;
+  padding-left:10px;
+}
+.tabs .tab-header > div:hover,
+.tabs .tab-header > div.active {
+  color:#7ca183;
+}
+.tabs .tab-header div i {
+  display:inline-block;
+  margin-left:10px;
+  margin-right:5px;
+}
+.tabs .tab-content {
+  position:relative;
+  height:100%;
+  overflow:hidden;
+  font-family: "Cafe24Oneprettynight";
+  display: flex;
+  justify-content: center;
+}
+.tabs .tab-content > div > i {
+  display:inline-block;
+  width:35px;
+  height:35px;
+  background:#555;
+  color:#f5f5f5;
+  font-size:17px;
+  font-weight:600;
+  text-align:center;
+  line-height:37px;
+  border-radius:50%;
+  margin-bottom: 35px;
+}
+.tabs .tab-content > div.contents {
+  position:absolute;
+  text-align:center;
+  padding:30px 20px;
+  top:-200%;
+  transition:all 500ms ease-in-out;
+}
+.tabs .tab-content > div.active {
+  top:0px;
+}
+
+.tabs .tab-indicator {
+  position:absolute;
+  width:4px;
+  height:35px;
+  background:#00acee;
+  left:228px;
+  top:87px;
+  transition:all 500ms ease-in-out;
+}
+
+<!-- 버튼 -->
+button.dark {
+	 --shadow: 0 2px 8px -1px rgba(21, 25, 36, .32);
+	 --shadow-hover: 0 4px 20px -2px rgba(21, 25, 36, .5);
+}
+ button.white {
+	 --background: #fff;
+	 --text: #275efe;
+	 --shadow: 0 2px 8px -1px rgba(18, 22, 33, .04);
+	 --shadow-hover: 0 4px 20px -2px rgba(18, 22, 33, .12);
+}
+ button.fast {
+	 --duration: 0.32s;
+}
+ button {
+	 --text: #fff;
+	 --font-size: 16px;
+	 --duration: 0.44s;
+	 --move-hover: -4px;
+	 --shadow: 0 2px 8px -1px rgba(39, 94, 254, .32);
+	 --shadow-hover: 0 4px 20px -2px rgba(39, 94, 254, .5);
+	 --font-shadow: var(--font-size);
+	 padding: 16px 32px;
+	 font-family: "Cafe24Oneprettynight";
+	 font-weight: 500;
+	 line-height: var(--font-size);
+	 border-radius: 24px;
+	 display: block;
+	 outline: none;
+	 appearance: none;
+	 border: none;
+	 text-decoration: none;
+	 font-size: var(--font-size);
+	 letter-spacing: 0.5px;
+	 background: var(--background);
+	 color: var(--text);
+	 box-shadow: var(--shadow);
+	 transform: translateY(var(--y)) translateZ(0);
+	 transition: transform var(--duration) ease, box-shadow var(--duration) ease;
+}
+button#updateBtn{
+	--background: #93b19a;
+}
+button.dark{
+	--background: black;	
+}
+
+ button div {
+	 display: flex;
+	 overflow: hidden;
+	 text-shadow: 0 var(--font-shadow) 0 var(--text);
+}
+ button div span {
+	 display: block;
+	 backface-visibility: hidden;
+	 font-style: normal;
+	 transition: transform var(--duration) ease;
+	 transform: translateY(var(--m)) translateZ(0);
+}
+ button div span:nth-child(1) {
+	 transition-delay: 0.05s;
+}
+ button div span:nth-child(2) {
+	 transition-delay: 0.1s;
+}
+ button div span:nth-child(3) {
+	 transition-delay: 0.15s;
+}
+ button div span:nth-child(4) {
+	 transition-delay: 0.2s;
+}
+ button div span:nth-child(5) {
+	 transition-delay: 0.25s;
+}
+ button div span:nth-child(6) {
+	 transition-delay: 0.3s;
+}
+ button div span:nth-child(7) {
+	 transition-delay: 0.35s;
+}
+ button div span:nth-child(8) {
+	 transition-delay: 0.4s;
+}
+ button div span:nth-child(9) {
+	 transition-delay: 0.45s;
+}
+ button div span:nth-child(10) {
+	 transition-delay: 0.5s;
+}
+ button div span:nth-child(11) {
+	 transition-delay: 0.55s;
+}
+ button:hover {
+	 --y: var(--move-hover);
+	 --shadow: var(--shadow-hover);
+}
+ button:hover span {
+	 --m: calc(var(--font-size) * -1);
+}
+ button.reverse {
+	 --font-shadow: calc(var(--font-size) * -1);
+}
+ button.reverse:hover span {
+	 --m: calc(var(--font-size));
+}
+ html {
+	 box-sizing: border-box;
+	 -webkit-font-smoothing: antialiased;
+}
+* {
+	 box-sizing: inherit;
+}
+ *:before, *:after {
+	 box-sizing: inherit;
+}
+ body {
+	 min-height: 100vh;
+	 display: flex;
+	 font-family: "Cafe24Oneprettynight";
+	 justify-content: center;
+	 align-items: center;
+	 background: #e4ecfa;
+}
+ body .button-list {
+	 display: flex;
+	 	
+}
+ body .button-list button {
+ 	font-family: "Cafe24Oneprettynight";
+	 margin: 0 12px;
+}
+ body .dribbble {
+	 position: fixed;
+	 display: block;
+	 right: 20px;
+	 bottom: 20px;
+}
+ body .dribbble img {
+	 display: block;
+	 height: 28px;
+}
+#contents{
+	display:flex;
+	flex-direction:column;
+	position:absolute;
+}
+
+#btn{
+	position: absolute;
+    top: 227px;
+    left: -125px;
+}
+#user{
+	display: flex;
+    justify-content: space-evenly;
+    width: 380px;
+}
+.session{
+	display:flex;
+	flex-direction:column;
+}
+p{
+	font-weight:bold;
+	color:#888;
+	margin-top:10px;
+}
+h2{
+	font-size : 1.3rem;
+	margin-bottom:0;
+	color : black; 
+	font-weight:bold;
+	
+}
+header{
+	top:0px;
+}
+.m_top{
+	margin-top: 50px;
+}
+#viewTitle{
+	position: absolute;
+    top: 256px;
+    left: 630px;
+    font-size: 1.7rem;
+    font-weight: bold;
+}
