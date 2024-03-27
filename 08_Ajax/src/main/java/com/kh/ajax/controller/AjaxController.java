@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @Controller
 public class AjaxController {
 	
-	//20240327 시험 관련
+	//20240327 시험 관련 ----------------------------------------------
 	public static final String serviceKey = "UNmnLkcNtzgMKivBzvyb3TdrsqmthwquJWOHYpkKXK6aXtSdhG1gbTQ6EOqATL5t3ApCJ2hySkej4pCTXuaAZg%3D%3D";
 	
 	@ResponseBody
