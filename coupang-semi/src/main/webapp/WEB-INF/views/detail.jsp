@@ -25,6 +25,9 @@
 </head>
 <body>
 	<sec:authentication var="user" property="principal" />
+	${product}
+	<br>
+	${user}
 	<!-- ${product}
 	<br> ${user}
 	<br> ${pick} -->

@@ -8,6 +8,7 @@ import com.semi.coupang.model.vo.User;
 
 @Repository
 public class UserDAO {
+	
 	@Autowired
 	private SqlSessionTemplate session;
 	

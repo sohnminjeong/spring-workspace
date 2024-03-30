@@ -10,7 +10,6 @@ import com.semi.coupang.service.UserService;
 
 @Controller
 public class UserController {
-	
 	@Autowired
 	private UserService service;
 	
@@ -22,5 +21,4 @@ public class UserController {
 		service.register(user);
 		return "redirect:/";
 	}
-	
 }

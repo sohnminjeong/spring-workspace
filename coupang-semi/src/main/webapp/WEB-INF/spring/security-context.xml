@@ -3,38 +3,23 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:security="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.2.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-	<!-- 암호화 처리 하기위한 bean 등록 -->
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+	<context:component-scan base-package="com.semi.coupang" />
+	<bean id="userService" class="com.semi.coupang.service.UserService"/>
 	
-	<!-- com.semi.coupang 패키지의 모든 코드를 스캔 -->
-	<context:component-scan base-package="com.semi.coupang"/>
-	
-	<!-- UserService.java 생성 후 security에 userService 등록 후 사용 할려면 bean 등록 필요 -->
-	<bean id="userSerivce" class="com.semi.coupang.service.UserService"/>
-	
-	<!-- security의 설정(2개) : http, authentication-manager -->
-	<!-- http : security의 경로 결정 -->
-	<!-- 
-	form-login : 로그인 관련
-	csrf : 사이트 위조 요청 
-	access-denied-handler : 접근 할 때 에러 발생 시 
-	logout : 로그아웃 -> 로그아웃일 때 invalidate 해서 session 죽이기 
-	 -->
 	<security:http>
-		<security:form-login/>	
+		<security:form-login/>
 		<security:csrf disabled="true"/>
 		<security:logout logout-url="/logout" invalidate-session="true"/>
 	</security:http>
 	
-	<!-- 인증 매니저 : 다양한 방식의 인증을 처리할 수 있도록 설계 -->
 	<security:authentication-manager>
 		<security:authentication-provider user-service-ref="userService">
 			<security:password-encoder hash="bcrypt"/>
 		</security:authentication-provider>
 	</security:authentication-manager>
-
 </beans>

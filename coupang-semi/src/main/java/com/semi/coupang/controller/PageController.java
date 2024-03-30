@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.semi.coupang.model.vo.Pick;
+
 import com.semi.coupang.model.vo.Product;
-import com.semi.coupang.service.PickService;
+
 import com.semi.coupang.service.ProductService;
 
 // 페이지 이동 처리만 기능
@@ -20,8 +20,17 @@ public class PageController {
 	
 
 	@Autowired
-	private ProductService prodService;
+	private ProductService service;
 	
+	@GetMapping("detail")
+	public String detail(String code, Model model) {
+		
+		Product product = service.select(Integer.parseInt(code));
+			model.addAttribute("product", product);
+		
+		return "detail";
+	}
+	/*
 	@Autowired
 	private PickService pickService;
 	
@@ -66,5 +75,5 @@ public class PageController {
 		pickService.delete(Integer.parseInt(code));
 		return true;
 	}
-	
+	*/
 }

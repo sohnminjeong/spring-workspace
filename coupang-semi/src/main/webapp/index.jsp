@@ -10,11 +10,10 @@
       rel="shortcut icon"
       href="https://image9.coupangcdn.com/image/coupang/favicon/v2/favicon.ico"
     />
-    
   </head>
   <body>
-	<jsp:include page="/header.jsp"/>
-
+  	<jsp:include page="/header.jsp"/>
+  
     <!-- main -->
     <main>
       <img

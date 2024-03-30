@@ -18,10 +18,9 @@
 	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 	crossorigin="anonymous"></script>
 	
-	<script
-      src="https://kit.fontawesome.com/4602e82315.js"
-      crossorigin="anonymous"
-    ></script>
+	
+    
+    <script src="https://kit.fontawesome.com/cbb1359000.js" crossorigin="anonymous"></script>
 <style>
 .register-logo {
 	display: block;
