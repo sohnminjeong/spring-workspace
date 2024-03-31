@@ -8,8 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://kit.fontawesome.com/4602e82315.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/cbb1359000.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <style>
 .fa-heart {
@@ -25,23 +24,20 @@
 </head>
 <body>
 	<sec:authentication var="user" property="principal" />
-	${product}
-	<br>
-	${user}
-	<!-- ${product}
+	<!--  ${product}
 	<br> ${user}
-	<br> ${pick} -->
+	<br> ${pick}-->
 	<img src="${product.prodPhoto}" width="400">
 	<h2>${product.prodName}
 
 		<c:choose>
-			<c:when test="${empty pick}">
+			<c:when test="${empty pick}">  <!-- pick이 비어있을 때 : 찜 하기 -->
 				<i class="fa-regular fa-heart" id="addPick"></i>
 			</c:when>
 			<c:otherwise>
 				<i class="fa-solid fa-heart" id="delPick"></i>
 				
-				<script>
+				<script> //delPick은 pick 정보가 있어야 하기 때문에 script가 안에서 진행 됨 
 					$('#delPick').click(() => {
 						$.ajax({
 							type: 'post',
@@ -70,9 +66,6 @@
 			})
 		});
 	</script>
-	
-	
-	
 	
 </body>
 </html>

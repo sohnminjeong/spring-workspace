@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.semi.coupang.model.vo.Pick;
 import com.semi.coupang.model.vo.Product;
-
+import com.semi.coupang.model.vo.User;
+import com.semi.coupang.service.PickService;
 import com.semi.coupang.service.ProductService;
 
 // 페이지 이동 처리만 기능
@@ -20,38 +21,33 @@ public class PageController {
 	
 
 	@Autowired
-	private ProductService service;
+	private ProductService prodService;
 	
-	@GetMapping("detail")
-	public String detail(String code, Model model) {
-		
-		Product product = service.select(Integer.parseInt(code));
-			model.addAttribute("product", product);
-		
-		return "detail";
-	}
-	/*
 	@Autowired
 	private PickService pickService;
 	
 	@GetMapping("detail")
 	public String detail(String code, Model model) {
 		
+		// 시큐리티에 지정된 정보로 사용자 정보 불러오기(로그인 정보 불러오기) 
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails user = (UserDetails) principal;
 		
 		Product product = prodService.select(Integer.parseInt(code));
-		model.addAttribute("product", product);
+			model.addAttribute("product", product);
 		
+		// 상품코드(prodCode), 아이디(id)
 		Pick vo = new Pick();
-		vo.setProdCode(Integer.parseInt(code)); // 상품코드(prodCode)
-		vo.setId(user.getUsername()); // 아이디(id)
+		vo.setProdCode(Integer.parseInt(code));  // 상품코드(prodCode)
+		vo.setId(user.getUsername());  // 아이디(id) -> 시큐리티 통해 user 이름 가져와서 vo에 set 활용하여 넣기 
 		
 		Pick pick = pickService.select(vo);
-		model.addAttribute("pick", pick); // 데이터 바인딩
+		model.addAttribute("pick", pick);  // 데이터 바인딩 
 		
 		return "detail";
 	}
+	
+	
 	@ResponseBody
 	@PostMapping("/addPick")
 	public boolean addPick(String code) {
@@ -69,11 +65,12 @@ public class PageController {
 		return true;
 	}
 	
+	
 	@ResponseBody
 	@PostMapping("/delPick")
 	public boolean delPick(String code) {
 		pickService.delete(Integer.parseInt(code));
 		return true;
 	}
-	*/
+	
 }
